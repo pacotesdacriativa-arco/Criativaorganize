@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle Criativa</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:
+linear-gradient(180deg,#2a120b,#66301E,#8a4a2d);
+color:#fff7ef;
+}
+
+.hidden{
+display:none;
+}
+
+.login{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:25px;
+}
+
+.box{
+width:100%;
+max-width:430px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,215,130,.25);
+border-radius:35px;
+padding:35px 25px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 30px rgba(255,200,120,.18);
+text-align:center;
+}
+
+.logo{
+font-size:70px;
+margin-bottom:10px;
+}
+
+h1,h2{
+text-align:center;
+color:#ffd68f;
+}
+
+.sub{
+text-align:center;
+color:#ffe6bf;
+font-weight:bold;
+}
+
+input,select,textarea{
+width:100%;
+padding:13px;
+margin-top:8px;
+border-radius:15px;
+border:1px solid #d4a55f;
+background:#fff7ef;
+color:#3b1d11;
+font-size:14px;
+}
+
+textarea{
+height:70px;
+resize:none;
+}
+
+button{
+border:none;
+border-radius:16px;
+padding:14px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn{
+width:100%;
+margin-top:15px;
+background:linear-gradient(135deg,#b67b19,#ffd68f,#fff0ca);
+color:#3b1d11;
+font-size:15px;
+box-shadow:0 0 18px rgba(255,214,143,.30);
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,215,130,.20);
+border-radius:28px;
+padding:18px;
+margin-bottom:20px;
+backdrop-filter:blur(10px);
+}
+
+.resumo{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+}
+
+.boxResumo{
+background:rgba(255,255,255,.10);
+border-radius:18px;
+padding:14px;
+text-align:center;
+}
+
+.valor{
+font-size:22px;
+font-weight:bold;
+color:#ffd68f;
+margin-top:5px;
+}
+
+.tabela{
+overflow:auto;
+margin-top:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:900px;
+}
+
+th{
+background:#8a5a2d;
+padding:12px;
+color:#fff5e4;
+font-size:14px;
+}
+
+td{
+background:rgba(255,255,255,.08);
+padding:10px;
+text-align:center;
+font-size:13px;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.statusPago{
+color:#8fff9c;
+font-weight:bold;
+}
+
+.statusNao{
+color:#ff9d9d;
+font-weight:bold;
+}
+
+.statusEntrega{
+color:#9fc8ff;
+font-weight:bold;
+}
+
+.btnMini{
+padding:8px 10px;
+border-radius:10px;
+font-size:12px;
+margin:2px;
+}
+
+.btnBrown{
+background:#66301E;
+color:#ffd68f;
+border:1px solid #ffd68f;
+}
+
+.btnDelete{
+background:#9b2a1d;
+color:white;
+}
+
+footer{
+text-align:center;
+margin-top:20px;
+font-size:12px;
+color:#ffe6bf;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login" id="login">
+
+<div class="box">
+
+<div class="logo">🤎</div>
+
+<h1>Controle Criativa</h1>
+
+<p class="sub">
+Pedidos • dinheiro • organização ✨
+</p>
+
+<input type="password" id="senha" placeholder="Digite a senha">
+
+<button class="btn" onclick="entrar()">
+Entrar
+</button>
+
+</div>
+
+</div>
+
+<div class="container hidden" id="app">
+
+<div class="card">
+
+<div class="logo" style="text-align:center;">✨</div>
+
+<h1>Controle Criativa</h1>
+
+<p class="sub">
+Sistema premium da Criativa 🤎
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Resumo financeiro</h2>
+
+<label>Gasto com anúncio</label>
+<input type="number" id="gastoAnuncio" placeholder="Ex: 42" oninput="salvarGasto()">
+
+<div class="resumo">
+
+<div class="boxResumo">
+<div>Entrou</div>
+<div class="valor" id="totalEntrou">R$0</div>
+</div>
+
+<div class="boxResumo">
+<div>Anúncio</div>
+<div class="valor" id="totalAnuncio">R$0</div>
+</div>
+
+<div class="boxResumo">
+<div>Lucro</div>
+<div class="valor" id="lucro">R$0</div>
+</div>
+
+<div class="boxResumo">
+<div>Pedidos</div>
+<div class="valor" id="qtdPedidos">0</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Novo pedido</h2>
+
+<label>Cliente</label>
+<input type="text" id="cliente">
+
+<label>Serviço</label>
+<select id="servico" onchange="preencherValor()">
+<option value="10">Logotipo - R$10</option>
+<option value="10">Marca d’água - R$10</option>
+<option value="25">Tabela de preços - R$25</option>
+<option value="22">Bonequinha - R$22</option>
+<option value="32">Logotipo com bonequinha - R$32</option>
+<option value="18">4 figurinhas WhatsApp - R$18</option>
+<option value="2">Capas destaques - R$2</option>
+<option value="25">Cartão digital - R$25</option>
+</select>
+
+<label>Valor</label>
+<input type="number" id="valor">
+
+<label>Data</label>
+<input type="date" id="data">
+
+<label>Horário do pagamento</label>
+<input type="time" id="hora">
+
+<label>Pago?</label>
+<select id="pago">
+<option value="sim">Sim</option>
+<option value="nao">Não</option>
+</select>
+
+<label>Entregue?</label>
+<select id="entregue">
+<option value="nao">Não</option>
+<option value="sim">Sim</option>
+</select>
+
+<label>Observação</label>
+<textarea id="obs"></textarea>
+
+<button class="btn" onclick="adicionarPedido()">
+Salvar pedido ✨
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Pedidos</h2>
+
+<div class="tabela">
+
+<table>
+
+<thead>
+<tr>
+<th>Cliente</th>
+<th>Serviço</th>
+<th>Valor</th>
+<th>Data</th>
+<th>Hora</th>
+<th>Pago</th>
+<th>Entregue</th>
+<th>Obs</th>
+<th>Ações</th>
+</tr>
+</thead>
+
+<tbody id="tabelaPedidos"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<footer>
+Controle Criativa 🤎✨
+</footer>
+
+</div>
+
+<script>
+let pedidos = JSON.parse(localStorage.getItem("pedidosCriativa")) || [];
+
+let gasto = Number(localStorage.getItem("gastoAnuncioCriativa")) || 0;
+
+document.getElementById("gastoAnuncio").value = gasto || "";
+
+function entrar(){
+
+let senha = document.getElementById("senha").value;
+
+if(senha === "flor8"){
+
+document.getElementById("login").style.display="none";
+document.getElementById("app").classList.remove("hidden");
+
+atualizar();
+
+}else{
+
+alert("Senha incorreta.");
+
+}
+}
+
+function dinheiro(v){
+
+return Number(v).toLocaleString("pt-BR",{
+style:"currency",
+currency:"BRL"
+});
+
+}
+
+function preencherValor(){
+
+document.getElementById("valor").value =
+document.getElementById("servico").value;
+
+}
+
+function salvar(){
+
+localStorage.setItem("pedidosCriativa", JSON.stringify(pedidos));
+
+}
+
+function salvarGasto(){
+
+gasto =
+Number(document.getElementById("gastoAnuncio").value) || 0;
+
+localStorage.setItem("gastoAnuncioCriativa", gasto);
+
+atualizarResumo();
+
+}
+
+function adicionarPedido(){
+
+let cliente =
+document.getElementById("cliente").value;
+
+let servico =
+document.getElementById("servico")
+.options[
+document.getElementById("servico").selectedIndex
+].text;
+
+let valor =
+Number(document.getElementById("valor").value);
+
+let data =
+document.getElementById("data").value;
+
+let hora =
+document.getElementById("hora").value;
+
+let pago =
+document.getElementById("pago").value;
+
+let entregue =
+document.getElementById("entregue").value;
+
+let obs =
+document.getElementById("obs").value;
+
+if(!cliente || !valor || !data){
+
+alert("Preencha cliente, valor e data.");
+
+return;
+
+}
+
+pedidos.push({
+cliente,
+servico,
+valor,
+data,
+hora,
+pago,
+entregue,
+obs
+});
+
+salvar();
+
+document.getElementById("cliente").value="";
+document.getElementById("valor").value="";
+document.getElementById("data").value="";
+document.getElementById("hora").value="";
+document.getElementById("obs").value="";
+
+atualizar();
+
+}
+
+function excluir(index){
+
+if(confirm("Excluir pedido?")){
+
+pedidos.splice(index,1);
+
+salvar();
+
+atualizar();
+
+}
+
+}
+
+function mudarPago(index){
+
+pedidos[index].pago =
+pedidos[index].pago === "sim" ? "nao" : "sim";
+
+salvar();
+
+atualizar();
+
+}
+
+function mudarEntrega(index){
+
+pedidos[index].entregue =
+pedidos[index].entregue === "sim" ? "nao" : "sim";
+
+salvar();
+
+atualizar();
+
+}
+
+function atualizarResumo(){
+
+let entrou = pedidos
+.filter(p=>p.pago==="sim")
+.reduce((s,p)=>s+p.valor,0);
+
+let lucro = entrou - gasto;
+
+document.getElementById("totalEntrou").innerText =
+dinheiro(entrou);
+
+document.getElementById("totalAnuncio").innerText =
+dinheiro(gasto);
+
+document.getElementById("lucro").innerText =
+dinheiro(lucro);
+
+document.getElementById("qtdPedidos").innerText =
+pedidos.length;
+
+}
+
+function atualizarTabela(){
+
+let tabela =
+document.getElementById("tabelaPedidos");
+
+tabela.innerHTML="";
+
+pedidos.slice().reverse().forEach((p,index)=>{
+
+tabela.innerHTML += `
+<tr>
+
+<td>${p.cliente}</td>
+
+<td>${p.servico}</td>
+
+<td>${dinheiro(p.valor)}</td>
+
+<td>${p.data}</td>
+
+<td>${p.hora || "-"}</td>
+
+<td class="${p.pago==="sim" ? "statusPago" : "statusNao"}">
+${p.pago==="sim" ? "Pago" : "Não"}
+</td>
+
+<td class="${p.entregue==="sim" ? "statusEntrega" : "statusNao"}">
+${p.entregue==="sim" ? "Entregue" : "Pendente"}
+</td>
+
+<td>${p.obs || "-"}</td>
+
+<td>
+
+<button class="btnMini btnBrown"
+onclick="mudarPago(${pedidos.length-1-index})">
+Pago
+</button>
+
+<button class="btnMini btnBrown"
+onclick="mudarEntrega(${pedidos.length-1-index})">
+Entrega
+</button>
+
+<button class="btnMini btnDelete"
+onclick="excluir(${pedidos.length-1-index})">
+X
+</button>
+
+</td>
+
+</tr>
+`;
+
+});
+
+}
+
+function atualizar(){
+
+atualizarResumo();
+
+atualizarTabela();
+
+}
+
+preencherValor();
+</script>
+
+</body>
+</html>
