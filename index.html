@@ -2,595 +2,3257 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Controle Criativa</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#66301E">
+<title>Criativa Organize</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --brown:#66301E;
+    --brown2:#8A4930;
+    --gold:#D5A33A;
+    --gold2:#F2D27A;
+    --cream:#FFF9F0;
+    --cream2:#F7EBDD;
+    --white:#FFFFFF;
+    --text:#3D2921;
+    --muted:#8B766B;
+    --green:#4E8B62;
+    --red:#B95757;
+    --shadow:0 8px 25px rgba(102,48,30,.12);
+}
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:
-linear-gradient(180deg,#2a120b,#66301E,#8a4a2d);
-color:#fff7ef;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:#F9F3EC;
+    color:var(--text);
+    min-height:100vh;
 }
 
-.hidden{
-display:none;
-}
-
-.login{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:25px;
-}
-
-.box{
-width:100%;
-max-width:430px;
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,215,130,.25);
-border-radius:35px;
-padding:35px 25px;
-backdrop-filter:blur(10px);
-box-shadow:0 0 30px rgba(255,200,120,.18);
-text-align:center;
-}
-
-.logo{
-font-size:70px;
-margin-bottom:10px;
-}
-
-h1,h2{
-text-align:center;
-color:#ffd68f;
-}
-
-.sub{
-text-align:center;
-color:#ffe6bf;
-font-weight:bold;
-}
-
-input,select,textarea{
-width:100%;
-padding:13px;
-margin-top:8px;
-border-radius:15px;
-border:1px solid #d4a55f;
-background:#fff7ef;
-color:#3b1d11;
-font-size:14px;
-}
-
-textarea{
-height:70px;
-resize:none;
+button,input,select{
+    font:inherit;
 }
 
 button{
-border:none;
-border-radius:16px;
-padding:14px;
-font-weight:bold;
-cursor:pointer;
+    cursor:pointer;
 }
 
-.btn{
-width:100%;
-margin-top:15px;
-background:linear-gradient(135deg,#b67b19,#ffd68f,#fff0ca);
-color:#3b1d11;
-font-size:15px;
-box-shadow:0 0 18px rgba(255,214,143,.30);
+.app{
+    max-width:1200px;
+    margin:auto;
+    padding-bottom:100px;
 }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:20px;
+header{
+    background:linear-gradient(135deg,#66301E,#8C4A30);
+    color:white;
+    padding:22px 16px 25px;
+    border-radius:0 0 28px 28px;
+    box-shadow:0 8px 25px rgba(102,48,30,.2);
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.logo-area h1{
+    font-size:25px;
+    font-weight:800;
+}
+
+.logo-area p{
+    font-size:12px;
+    opacity:.8;
+    margin-top:3px;
+}
+
+.header-month{
+    margin-top:18px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.header-month input{
+    flex:1;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.25);
+    color:white;
+    border-radius:12px;
+    padding:10px 12px;
+    outline:none;
+}
+
+.header-month label{
+    font-size:12px;
+    opacity:.8;
+}
+
+main{
+    padding:18px 14px;
+}
+
+.section{
+    margin-bottom:22px;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.section-title h2{
+    font-size:18px;
+}
+
+.section-title span{
+    font-size:12px;
+    color:var(--muted);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
 }
 
 .card{
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,215,130,.20);
-border-radius:28px;
-padding:18px;
-margin-bottom:20px;
-backdrop-filter:blur(10px);
+    background:white;
+    border-radius:18px;
+    padding:15px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(102,48,30,.06);
 }
 
-.resumo{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
+.metric{
+    min-height:115px;
 }
 
-.boxResumo{
-background:rgba(255,255,255,.10);
-border-radius:18px;
-padding:14px;
-text-align:center;
+.metric-icon{
+    font-size:23px;
+    margin-bottom:7px;
 }
 
-.valor{
-font-size:22px;
-font-weight:bold;
-color:#ffd68f;
-margin-top:5px;
+.metric-label{
+    font-size:11px;
+    color:var(--muted);
 }
 
-.tabela{
-overflow:auto;
-margin-top:15px;
+.metric-value{
+    font-size:20px;
+    font-weight:800;
+    margin-top:3px;
+    color:var(--brown);
+}
+
+.metric-small{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.phone-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+}
+
+.phone-card{
+    background:white;
+    border-radius:20px;
+    padding:17px;
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+}
+
+.phone-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:5px;
+    background:linear-gradient(#D5A33A,#8A4930);
+}
+
+.phone-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.phone-name{
+    font-size:17px;
+    font-weight:800;
+}
+
+.phone-user{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:3px;
+}
+
+.phone-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-top:15px;
+}
+
+.phone-stat{
+    background:#FAF5EF;
+    border-radius:12px;
+    padding:10px 6px;
+    text-align:center;
+}
+
+.phone-stat strong{
+    display:block;
+    font-size:15px;
+    color:var(--brown);
+}
+
+.phone-stat span{
+    display:block;
+    font-size:9px;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+.phone-profit{
+    margin-top:12px;
+    padding:11px;
+    border-radius:12px;
+    background:#F3F8F4;
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+}
+
+.profit-positive{
+    color:var(--green);
+    font-weight:800;
+}
+
+.profit-negative{
+    color:var(--red);
+    font-weight:800;
+}
+
+.btn{
+    border:none;
+    border-radius:12px;
+    padding:11px 14px;
+    font-weight:700;
+    transition:.15s;
+}
+
+.btn:active{
+    transform:scale(.97);
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,#66301E,#8A4930);
+    color:white;
+}
+
+.btn-gold{
+    background:linear-gradient(135deg,#D5A33A,#E9C66C);
+    color:#4B2D18;
+}
+
+.btn-light{
+    background:#F5EAE0;
+    color:var(--brown);
+}
+
+.btn-danger{
+    background:#FBEAEA;
+    color:#A43F3F;
+}
+
+.btn-small{
+    padding:8px 10px;
+    font-size:11px;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.form{
+    display:grid;
+    gap:10px;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.field label{
+    font-size:11px;
+    font-weight:700;
+    color:var(--muted);
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    border:1px solid #E8DCD0;
+    background:#FFFDF9;
+    border-radius:12px;
+    padding:11px;
+    outline:none;
+    color:var(--text);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:var(--gold);
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(42,23,17,.55);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:100;
+    padding:0;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:#FFFDF9;
+    width:100%;
+    max-width:650px;
+    max-height:92vh;
+    overflow:auto;
+    border-radius:26px 26px 0 0;
+    padding:20px;
+    animation:up .2s ease;
+}
+
+@keyframes up{
+    from{transform:translateY(100px);opacity:0}
+    to{transform:translateY(0);opacity:1}
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.modal-head h3{
+    font-size:19px;
+}
+
+.close{
+    border:none;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#F3E8DE;
+    color:var(--brown);
+    font-size:18px;
+}
+
+.table-wrap{
+    overflow:auto;
+    border-radius:15px;
 }
 
 table{
-width:100%;
-border-collapse:collapse;
-min-width:900px;
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
 }
 
 th{
-background:#8a5a2d;
-padding:12px;
-color:#fff5e4;
-font-size:14px;
+    background:#F3E7DC;
+    text-align:left;
+    padding:11px;
+    font-size:10px;
+    color:var(--brown);
 }
 
 td{
-background:rgba(255,255,255,.08);
-padding:10px;
-text-align:center;
-font-size:13px;
-border-bottom:1px solid rgba(255,255,255,.08);
+    padding:11px;
+    border-bottom:1px solid #EEE4DC;
+    font-size:11px;
+    background:white;
 }
 
-.statusPago{
-color:#8fff9c;
-font-weight:bold;
+.product-card{
+    background:white;
+    border-radius:17px;
+    padding:14px;
+    box-shadow:var(--shadow);
+    margin-bottom:9px;
 }
 
-.statusNao{
-color:#ff9d9d;
-font-weight:bold;
+.product-head{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
 }
 
-.statusEntrega{
-color:#9fc8ff;
-font-weight:bold;
+.product-name{
+    font-weight:800;
 }
 
-.btnMini{
-padding:8px 10px;
-border-radius:10px;
-font-size:12px;
-margin:2px;
+.product-status{
+    font-size:9px;
+    border-radius:20px;
+    padding:4px 7px;
+    background:#F1EEE9;
+    color:var(--muted);
 }
 
-.btnBrown{
-background:#66301E;
-color:#ffd68f;
-border:1px solid #ffd68f;
+.product-prices{
+    display:flex;
+    gap:15px;
+    margin-top:8px;
+    font-size:11px;
 }
 
-.btnDelete{
-background:#9b2a1d;
-color:white;
+.price-normal{
+    color:var(--brown);
+    font-weight:800;
 }
 
-footer{
-text-align:center;
-margin-top:20px;
-font-size:12px;
-color:#ffe6bf;
+.price-promo{
+    color:#AF7130;
+    font-weight:800;
+}
+
+.product-info{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+    font-size:10px;
+    color:var(--muted);
+}
+
+.badge{
+    display:inline-flex;
+    padding:5px 8px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:700;
+}
+
+.badge-green{
+    background:#EAF5ED;
+    color:#3D7951;
+}
+
+.badge-red{
+    background:#FBEAEA;
+    color:#A34343;
+}
+
+.badge-gold{
+    background:#FBF1D9;
+    color:#9B6C1E;
+}
+
+.nav{
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:12px;
+    width:calc(100% - 20px);
+    max-width:700px;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(15px);
+    border:1px solid #E8DCD0;
+    box-shadow:0 10px 30px rgba(55,30,20,.2);
+    border-radius:22px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    padding:7px;
+    z-index:80;
+}
+
+.nav button{
+    border:none;
+    background:none;
+    color:#9A877D;
+    padding:7px 2px;
+    border-radius:15px;
+    font-size:9px;
+}
+
+.nav button.active{
+    background:#F2E4D6;
+    color:var(--brown);
+    font-weight:800;
+}
+
+.nav-icon{
+    display:block;
+    font-size:19px;
+    margin-bottom:2px;
+}
+
+.empty{
+    padding:30px 15px;
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.toast{
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%) translateY(100px);
+    bottom:90px;
+    background:#3D2921;
+    color:white;
+    padding:12px 17px;
+    border-radius:13px;
+    font-size:12px;
+    z-index:200;
+    opacity:0;
+    transition:.25s;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+.rank{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid #EEE4DC;
+}
+
+.rank:last-child{
+    border-bottom:0;
+}
+
+.rank-number{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#F3E6D9;
+    color:var(--brown);
+    font-weight:800;
+}
+
+.rank-info{
+    flex:1;
+}
+
+.rank-info strong{
+    display:block;
+    font-size:13px;
+}
+
+.rank-info span{
+    font-size:10px;
+    color:var(--muted);
+}
+
+.rank-value{
+    font-weight:800;
+    color:var(--brown);
+    font-size:13px;
+}
+
+.switch{
+    display:flex;
+    background:#F2E7DD;
+    padding:4px;
+    border-radius:13px;
+    margin-bottom:12px;
+}
+
+.switch button{
+    flex:1;
+    border:0;
+    background:transparent;
+    padding:9px;
+    border-radius:10px;
+    font-size:11px;
+    color:var(--muted);
+}
+
+.switch button.active{
+    background:white;
+    color:var(--brown);
+    font-weight:800;
+    box-shadow:0 2px 7px rgba(0,0,0,.07);
+}
+
+.notice{
+    padding:12px;
+    border-radius:14px;
+    background:#FFF6DF;
+    color:#805D22;
+    font-size:11px;
+    line-height:1.5;
+    margin-bottom:12px;
+}
+
+.hidden{
+    display:none!important;
+}
+
+@media(min-width:700px){
+    main{
+        padding:25px;
+    }
+
+    .phone-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .modal{
+        align-items:center;
+        padding:20px;
+    }
+
+    .modal-box{
+        border-radius:25px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="login" id="login">
+<div class="app">
 
-<div class="box">
+<header>
+    <div class="header-top">
+        <div class="logo-area">
+            <h1>✨ Criativa Organize</h1>
+            <p>Controle completo da sua operação</p>
+        </div>
 
-<div class="logo">🤎</div>
+        <button class="btn btn-gold btn-small" onclick="openPhoneModal()">
+            + Celular
+        </button>
+    </div>
 
-<h1>Controle Criativa</h1>
+    <div class="header-month">
+        <label>Mês:</label>
+        <input type="month" id="monthFilter">
+    </div>
+</header>
 
-<p class="sub">
-Pedidos • dinheiro • organização ✨
-</p>
+<main>
 
-<input type="password" id="senha" placeholder="Digite a senha">
+<!-- DASHBOARD -->
+<section id="page-dashboard" class="page">
 
-<button class="btn" onclick="entrar()">
-Entrar
-</button>
+    <div class="section">
+        <div class="section-title">
+            <h2>Visão geral</h2>
+            <span id="dashboardMonthText"></span>
+        </div>
 
+        <div class="grid">
+
+            <div class="card metric">
+                <div class="metric-icon">💰</div>
+                <div class="metric-label">Faturamento</div>
+                <div class="metric-value" id="totalRevenue">R$ 0,00</div>
+                <div class="metric-small" id="totalSalesText">0 vendas</div>
+            </div>
+
+            <div class="card metric">
+                <div class="metric-icon">📢</div>
+                <div class="metric-label">Anúncios</div>
+                <div class="metric-value" id="totalAds">R$ 0,00</div>
+                <div class="metric-small">investimento</div>
+            </div>
+
+            <div class="card metric">
+                <div class="metric-icon">💵</div>
+                <div class="metric-label">Lucro após anúncios</div>
+                <div class="metric-value" id="totalProfit">R$ 0,00</div>
+                <div class="metric-small">faturamento − anúncios</div>
+            </div>
+
+            <div class="card metric">
+                <div class="metric-icon">🛍️</div>
+                <div class="metric-label">Produtos vendidos</div>
+                <div class="metric-value" id="totalProductsSold">0</div>
+                <div class="metric-small">unidades</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>📱 Desempenho dos celulares</h2>
+            <span id="phoneCount"></span>
+        </div>
+
+        <div id="phoneDashboard" class="phone-grid"></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>🏆 Ranking de celulares</h2>
+        </div>
+
+        <div class="card" id="phoneRanking"></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>🔥 Produtos mais vendidos</h2>
+        </div>
+
+        <div class="card" id="topProducts"></div>
+    </div>
+
+</section>
+
+
+<!-- VENDAS -->
+<section id="page-sales" class="page hidden">
+
+    <div class="section-title">
+        <h2>🛒 Vendas</h2>
+        <button class="btn btn-primary btn-small" onclick="openSaleModal()">+ Venda</button>
+    </div>
+
+    <div class="notice">
+        Cada venda fica ligada ao celular que fez o atendimento. Assim você consegue comparar exatamente quem está vendendo mais.
+    </div>
+
+    <div class="card">
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Celular</th>
+                        <th>Produto</th>
+                        <th>Qtd.</th>
+                        <th>Valor</th>
+                        <th>Cliente</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="salesTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- PRODUTOS -->
+<section id="page-products" class="page hidden">
+
+    <div class="section-title">
+        <h2>📦 Produtos</h2>
+        <button class="btn btn-primary btn-small" onclick="openProductModal()">+ Produto</button>
+    </div>
+
+    <div class="notice">
+        O sistema guarda o preço cobrado em cada venda. Então, mesmo que você mude o preço amanhã, as vendas antigas continuam com o valor que realmente foi cobrado.
+    </div>
+
+    <div id="productsList"></div>
+
+</section>
+
+
+<!-- ANÚNCIOS -->
+<section id="page-ads" class="page hidden">
+
+    <div class="section-title">
+        <h2>📢 Anúncios</h2>
+        <button class="btn btn-primary btn-small" onclick="openAdModal()">+ Gasto</button>
+    </div>
+
+    <div class="grid">
+
+        <div class="card metric">
+            <div class="metric-icon">📱</div>
+            <div class="metric-label">Investimento</div>
+            <div class="metric-value" id="adsPageTotal">R$ 0,00</div>
+        </div>
+
+        <div class="card metric">
+            <div class="metric-icon">🛒</div>
+            <div class="metric-label">Custo por venda</div>
+            <div class="metric-value" id="costPerSale">R$ 0,00</div>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="card">
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Celular</th>
+                        <th>Valor</th>
+                        <th>Observação</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="adsTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- MAIS -->
+<section id="page-more" class="page hidden">
+
+    <div class="section-title">
+        <h2>⚙️ Organização</h2>
+    </div>
+
+    <div class="card">
+
+        <div class="actions">
+
+            <button class="btn btn-primary" onclick="openClientModal()">
+                👥 Clientes
+            </button>
+
+            <button class="btn btn-light" onclick="openPhoneModal()">
+                📱 Celulares
+            </button>
+
+            <button class="btn btn-light" onclick="openProductModal()">
+                📦 Produtos
+            </button>
+
+            <button class="btn btn-light" onclick="openSaleModal()">
+                🛒 Registrar venda
+            </button>
+
+            <button class="btn btn-light" onclick="openAdModal()">
+                📢 Registrar anúncio
+            </button>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>📊 Resumo dos produtos</h2>
+        </div>
+
+        <div class="card">
+            <div id="productSummary"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>💲 Histórico de preços</h2>
+        </div>
+
+        <div class="card">
+            <div id="priceHistory"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>👥 Clientes</h2>
+        </div>
+
+        <div class="card">
+            <div id="clientsList"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>💾 Dados</h2>
+        </div>
+
+        <div class="card">
+            <div class="actions">
+                <button class="btn btn-light" onclick="exportData()">
+                    ⬇️ Exportar backup
+                </button>
+
+                <button class="btn btn-danger" onclick="clearData()">
+                    🗑️ Apagar todos os dados
+                </button>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</main>
 </div>
 
-</div>
 
-<div class="container hidden" id="app">
+<!-- NAV -->
+<nav class="nav">
 
-<div class="card">
+    <button class="active" onclick="showPage('dashboard',this)">
+        <span class="nav-icon">📊</span>
+        Início
+    </button>
 
-<div class="logo" style="text-align:center;">✨</div>
+    <button onclick="showPage('sales',this)">
+        <span class="nav-icon">🛒</span>
+        Vendas
+    </button>
 
-<h1>Controle Criativa</h1>
+    <button onclick="showPage('products',this)">
+        <span class="nav-icon">📦</span>
+        Produtos
+    </button>
 
-<p class="sub">
-Sistema premium da Criativa 🤎
-</p>
+    <button onclick="showPage('ads',this)">
+        <span class="nav-icon">📢</span>
+        Anúncios
+    </button>
 
-</div>
+    <button onclick="showPage('more',this)">
+        <span class="nav-icon">⚙️</span>
+        Mais
+    </button>
 
-<div class="card">
+</nav>
 
-<h2>Resumo financeiro</h2>
 
-<label>Gasto com anúncio</label>
-<input type="number" id="gastoAnuncio" placeholder="Ex: 42" oninput="salvarGasto()">
+<!-- PHONE MODAL -->
+<div class="modal" id="phoneModal">
 
-<div class="resumo">
+<div class="modal-box">
 
-<div class="boxResumo">
-<div>Entrou</div>
-<div class="valor" id="totalEntrou">R$0</div>
-</div>
+    <div class="modal-head">
+        <h3>📱 Novo celular</h3>
+        <button class="close" onclick="closeModal('phoneModal')">×</button>
+    </div>
 
-<div class="boxResumo">
-<div>Anúncio</div>
-<div class="valor" id="totalAnuncio">R$0</div>
-</div>
+    <div class="form">
 
-<div class="boxResumo">
-<div>Lucro</div>
-<div class="valor" id="lucro">R$0</div>
-</div>
+        <div class="field">
+            <label>Nome do celular</label>
+            <input id="phoneName" placeholder="Ex.: Celular 1">
+        </div>
 
-<div class="boxResumo">
-<div>Pedidos</div>
-<div class="valor" id="qtdPedidos">0</div>
-</div>
+        <div class="field">
+            <label>Quem usa</label>
+            <input id="phoneUser" placeholder="Ex.: Eu">
+        </div>
 
-</div>
+        <button class="btn btn-primary" onclick="savePhone()">
+            Salvar celular
+        </button>
 
-</div>
-
-<div class="card">
-
-<h2>Novo pedido</h2>
-
-<label>Cliente</label>
-<input type="text" id="cliente">
-
-<label>Serviço</label>
-<select id="servico" onchange="preencherValor()">
-<option value="10">Logotipo - R$10</option>
-<option value="10">Marca d’água - R$10</option>
-<option value="25">Tabela de preços - R$25</option>
-<option value="22">Bonequinha - R$22</option>
-<option value="32">Logotipo com bonequinha - R$32</option>
-<option value="18">4 figurinhas WhatsApp - R$18</option>
-<option value="2">Capas destaques - R$2</option>
-<option value="25">Cartão digital - R$25</option>
-</select>
-
-<label>Valor</label>
-<input type="number" id="valor">
-
-<label>Data</label>
-<input type="date" id="data">
-
-<label>Horário do pagamento</label>
-<input type="time" id="hora">
-
-<label>Pago?</label>
-<select id="pago">
-<option value="sim">Sim</option>
-<option value="nao">Não</option>
-</select>
-
-<label>Entregue?</label>
-<select id="entregue">
-<option value="nao">Não</option>
-<option value="sim">Sim</option>
-</select>
-
-<label>Observação</label>
-<textarea id="obs"></textarea>
-
-<button class="btn" onclick="adicionarPedido()">
-Salvar pedido ✨
-</button>
+    </div>
 
 </div>
-
-<div class="card">
-
-<h2>Pedidos</h2>
-
-<div class="tabela">
-
-<table>
-
-<thead>
-<tr>
-<th>Cliente</th>
-<th>Serviço</th>
-<th>Valor</th>
-<th>Data</th>
-<th>Hora</th>
-<th>Pago</th>
-<th>Entregue</th>
-<th>Obs</th>
-<th>Ações</th>
-</tr>
-</thead>
-
-<tbody id="tabelaPedidos"></tbody>
-
-</table>
-
 </div>
 
+
+<!-- SALE MODAL -->
+<div class="modal" id="saleModal">
+
+<div class="modal-box">
+
+    <div class="modal-head">
+        <h3>🛒 Registrar venda</h3>
+        <button class="close" onclick="closeModal('saleModal')">×</button>
+    </div>
+
+    <div class="form">
+
+        <div class="form-row">
+
+            <div class="field">
+                <label>Data</label>
+                <input type="date" id="saleDate">
+            </div>
+
+            <div class="field">
+                <label>Celular</label>
+                <select id="salePhone"></select>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Produto</label>
+            <select id="saleProduct" onchange="updateSalePrice()"></select>
+        </div>
+
+        <div class="form-row">
+
+            <div class="field">
+                <label>Quantidade</label>
+                <input type="number" id="saleQty" min="1" value="1" oninput="updateSaleTotal()">
+            </div>
+
+            <div class="field">
+                <label>Tipo de preço</label>
+                <select id="salePriceType" onchange="updateSalePrice()">
+                    <option value="normal">Preço normal</option>
+                    <option value="promo">Promoção</option>
+                    <option value="custom">Outro valor</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Preço por unidade</label>
+            <input type="number" id="saleUnitPrice" step="0.01" min="0" oninput="updateSaleTotal()">
+        </div>
+
+        <div class="card" style="background:#F8EFE4;">
+            <div style="font-size:11px;color:#8B766B;">Total da venda</div>
+            <div id="saleTotalPreview" style="font-size:25px;font-weight:900;color:#66301E;margin-top:3px;">
+                R$ 0,00
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Nome do cliente</label>
+            <input id="saleClient" placeholder="Opcional">
+        </div>
+
+        <div class="form-row">
+
+            <div class="field">
+                <label>Pagamento</label>
+                <select id="salePayment">
+                    <option>Pix</option>
+                    <option>Dinheiro</option>
+                    <option>Cartão</option>
+                    <option>Pendente</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Entrega</label>
+                <select id="saleDelivery">
+                    <option>Entregue</option>
+                    <option>Pendente</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary" onclick="saveSale()">
+            Registrar venda
+        </button>
+
+    </div>
+
+</div>
 </div>
 
-<footer>
-Controle Criativa 🤎✨
-</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal" id="productModal">
+
+<div class="modal-box">
+
+    <div class="modal-head">
+        <h3>📦 Produto</h3>
+        <button class="close" onclick="closeModal('productModal')">×</button>
+    </div>
+
+    <input type="hidden" id="editProductId">
+
+    <div class="form">
+
+        <div class="field">
+            <label>Nome do produto</label>
+            <input id="productName" placeholder="Nome">
+        </div>
+
+        <div class="form-row">
+
+            <div class="field">
+                <label>Preço normal</label>
+                <input type="number" id="productNormal" step="0.01" min="0">
+            </div>
+
+            <div class="field">
+                <label>Preço promocional</label>
+                <input type="number" id="productPromo" step="0.01" min="0">
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Observação</label>
+            <input id="productNote" placeholder="Ex.: a partir de 5 unidades">
+        </div>
+
+        <button class="btn btn-primary" onclick="saveProduct()">
+            Salvar produto
+        </button>
+
+    </div>
 
 </div>
+</div>
+
+
+<!-- AD MODAL -->
+<div class="modal" id="adModal">
+
+<div class="modal-box">
+
+    <div class="modal-head">
+        <h3>📢 Gasto com anúncio</h3>
+        <button class="close" onclick="closeModal('adModal')">×</button>
+    </div>
+
+    <div class="form">
+
+        <div class="form-row">
+
+            <div class="field">
+                <label>Data</label>
+                <input type="date" id="adDate">
+            </div>
+
+            <div class="field">
+                <label>Celular</label>
+                <select id="adPhone"></select>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Valor gasto</label>
+            <input type="number" id="adAmount" step="0.01" min="0" placeholder="50.00">
+        </div>
+
+        <div class="field">
+            <label>Observação</label>
+            <input id="adNote" placeholder="Ex.: anúncio logotipo">
+        </div>
+
+        <button class="btn btn-primary" onclick="saveAd()">
+            Registrar gasto
+        </button>
+
+    </div>
+
+</div>
+</div>
+
+
+<!-- CLIENT MODAL -->
+<div class="modal" id="clientModal">
+
+<div class="modal-box">
+
+    <div class="modal-head">
+        <h3>👥 Clientes</h3>
+        <button class="close" onclick="closeModal('clientModal')">×</button>
+    </div>
+
+    <div class="form">
+
+        <div class="field">
+            <label>Nome</label>
+            <input id="clientName">
+        </div>
+
+        <div class="field">
+            <label>WhatsApp</label>
+            <input id="clientWhatsapp">
+        </div>
+
+        <button class="btn btn-primary" onclick="saveClient()">
+            Adicionar cliente
+        </button>
+
+        <div id="clientModalList"></div>
+
+    </div>
+
+</div>
+</div>
+
+
+<div class="toast" id="toast"></div>
+
 
 <script>
-let pedidos = JSON.parse(localStorage.getItem("pedidosCriativa")) || [];
 
-let gasto = Number(localStorage.getItem("gastoAnuncioCriativa")) || 0;
+/* ============================================================
+   CRIATIVA ORGANIZE
+   Tudo salvo localmente no aparelho.
+============================================================ */
 
-document.getElementById("gastoAnuncio").value = gasto || "";
+const STORAGE_KEY = "CriativaOrganize_2026";
 
-function entrar(){
+const defaultProducts = [
 
-let senha = document.getElementById("senha").value;
+    {
+        id:"logo",
+        name:"Logotipo",
+        normal:10,
+        promo:null,
+        note:""
+    },
 
-if(senha === "flor8"){
+    {
+        id:"marca",
+        name:"Marca d’água",
+        normal:15,
+        promo:null,
+        note:""
+    },
 
-document.getElementById("login").style.display="none";
-document.getElementById("app").classList.remove("hidden");
+    {
+        id:"tabela",
+        name:"Tabela de preços",
+        normal:25,
+        promo:15,
+        note:"Promoção disponível"
+    },
 
-atualizar();
+    {
+        id:"bonequinha",
+        name:"Bonequinha",
+        normal:22,
+        promo:8,
+        note:"Promoção disponível"
+    },
 
-}else{
+    {
+        id:"logoBonequinha",
+        name:"Logo com bonequinha",
+        normal:32,
+        promo:null,
+        note:""
+    },
 
-alert("Senha incorreta.");
+    {
+        id:"capas",
+        name:"Capa para destaques",
+        normal:2,
+        promo:null,
+        note:"R$ 2 a partir de 5 unidades"
+    },
+
+    {
+        id:"cartaoLink",
+        name:"Cartão digital com link",
+        normal:20,
+        promo:null,
+        note:""
+    },
+
+    {
+        id:"cartaoSemLink",
+        name:"Cartão digital sem link",
+        normal:10,
+        promo:null,
+        note:""
+    },
+
+    {
+        id:"bonequinhaProfissao",
+        name:"Bonequinha da profissão",
+        normal:15,
+        promo:null,
+        note:""
+    },
+
+    {
+        id:"fotoPremium",
+        name:"Foto de perfil premium",
+        normal:18,
+        promo:null,
+        note:""
+    }
+
+];
+
+
+let db = loadDB();
+
+let currentMonth = getCurrentMonth();
+
+
+/* ============================================================
+   BANCO
+============================================================ */
+
+function loadDB(){
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if(saved){
+
+        try{
+
+            const data = JSON.parse(saved);
+
+            data.phones = data.phones || [];
+            data.products = data.products || [];
+            data.sales = data.sales || [];
+            data.ads = data.ads || [];
+            data.clients = data.clients || [];
+            data.priceHistory = data.priceHistory || [];
+
+            return data;
+
+        }catch(e){}
+
+    }
+
+    return {
+
+        phones:[
+            {
+                id:uid(),
+                name:"Celular 1",
+                user:"Principal",
+                active:true
+            },
+            {
+                id:uid(),
+                name:"Celular 2",
+                user:"Segundo",
+                active:true
+            }
+        ],
+
+        products:defaultProducts.map(p=>({
+            ...p,
+            active:true
+        })),
+
+        sales:[],
+
+        ads:[],
+
+        clients:[],
+
+        priceHistory:[]
+
+    };
 
 }
+
+
+function saveDB(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(db)
+    );
+
 }
 
-function dinheiro(v){
 
-return Number(v).toLocaleString("pt-BR",{
-style:"currency",
-currency:"BRL"
+function uid(){
+
+    return Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+
+}
+
+
+/* ============================================================
+   DATAS
+============================================================ */
+
+function getCurrentMonth(){
+
+    const d=new Date();
+
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");
+
+}
+
+
+function today(){
+
+    const d=new Date();
+
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+
+}
+
+
+function monthOf(date){
+
+    return String(date||"").slice(0,7);
+
+}
+
+
+function formatDate(date){
+
+    if(!date)return"—";
+
+    const parts=date.split("-");
+
+    if(parts.length!==3)return date;
+
+    return parts[2]+"/"+parts[1]+"/"+parts[0];
+
+}
+
+
+function formatMoney(value){
+
+    return Number(value||0).toLocaleString(
+        "pt-BR",
+        {
+            style:"currency",
+            currency:"BRL"
+        }
+    );
+
+}
+
+
+/* ============================================================
+   NAVEGAÇÃO
+============================================================ */
+
+function showPage(page,button){
+
+    document.querySelectorAll(".page").forEach(el=>{
+        el.classList.add("hidden");
+    });
+
+    const target=document.getElementById("page-"+page);
+
+    if(target)target.classList.remove("hidden");
+
+    document.querySelectorAll(".nav button").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    if(button)button.classList.add("active");
+
+    renderAll();
+
+}
+
+
+document.getElementById("monthFilter").addEventListener(
+    "change",
+    function(){
+
+        currentMonth=this.value || getCurrentMonth();
+
+        renderAll();
+
+    }
+);
+
+
+/* ============================================================
+   FILTROS
+============================================================ */
+
+function monthSales(){
+
+    return db.sales.filter(
+        sale=>monthOf(sale.date)===currentMonth
+    );
+
+}
+
+
+function monthAds(){
+
+    return db.ads.filter(
+        ad=>monthOf(ad.date)===currentMonth
+    );
+
+}
+
+
+/* ============================================================
+   CÁLCULOS
+============================================================ */
+
+function saleTotal(sale){
+
+    return Number(sale.qty||0)*Number(sale.unitPrice||0);
+
+}
+
+
+function totalRevenue(){
+
+    return monthSales().reduce(
+        (sum,sale)=>sum+saleTotal(sale),
+        0
+    );
+
+}
+
+
+function totalAds(){
+
+    return monthAds().reduce(
+        (sum,ad)=>sum+Number(ad.amount||0),
+        0
+    );
+
+}
+
+
+function totalUnits(){
+
+    return monthSales().reduce(
+        (sum,sale)=>sum+Number(sale.qty||0),
+        0
+    );
+
+}
+
+
+function totalProfit(){
+
+    return totalRevenue()-totalAds();
+
+}
+
+
+function phoneSales(phoneId){
+
+    return monthSales().filter(
+        sale=>sale.phoneId===phoneId
+    );
+
+}
+
+
+function phoneAds(phoneId){
+
+    return monthAds().filter(
+        ad=>ad.phoneId===phoneId
+    );
+
+}
+
+
+function phoneRevenue(phoneId){
+
+    return phoneSales(phoneId).reduce(
+        (sum,sale)=>sum+saleTotal(sale),
+        0
+    );
+
+}
+
+
+function phoneAdAmount(phoneId){
+
+    return phoneAds(phoneId).reduce(
+        (sum,ad)=>sum+Number(ad.amount||0),
+        0
+    );
+
+}
+
+
+function phoneUnits(phoneId){
+
+    return phoneSales(phoneId).reduce(
+        (sum,sale)=>sum+Number(sale.qty||0),
+        0
+    );
+
+}
+
+
+function phoneProfit(phoneId){
+
+    return phoneRevenue(phoneId)-phoneAdAmount(phoneId);
+
+}
+
+
+/* ============================================================
+   DASHBOARD
+============================================================ */
+
+function renderDashboard(){
+
+    document.getElementById("dashboardMonthText").textContent=
+        currentMonth;
+
+    document.getElementById("totalRevenue").textContent=
+        formatMoney(totalRevenue());
+
+    document.getElementById("totalAds").textContent=
+        formatMoney(totalAds());
+
+    document.getElementById("totalProfit").textContent=
+        formatMoney(totalProfit());
+
+    document.getElementById("totalSalesText").textContent=
+        monthSales().length+" vendas";
+
+    document.getElementById("totalProductsSold").textContent=
+        totalUnits();
+
+    const phones=db.phones.filter(p=>p.active);
+
+    document.getElementById("phoneCount").textContent=
+        phones.length+" celulares";
+
+    const container=document.getElementById("phoneDashboard");
+
+    if(!phones.length){
+
+        container.innerHTML=
+            `<div class="card empty">Nenhum celular cadastrado.</div>`;
+
+    }else{
+
+        container.innerHTML=phones.map(phone=>{
+
+            const revenue=phoneRevenue(phone.id);
+            const ads=phoneAdAmount(phone.id);
+            const profit=revenue-ads;
+            const sales=phoneSales(phone.id).length;
+            const units=phoneUnits(phone.id);
+            const cps=sales?ads/sales:0;
+
+            return `
+
+            <div class="phone-card">
+
+                <div class="phone-head">
+
+                    <div>
+                        <div class="phone-name">
+                            📱 ${escapeHTML(phone.name)}
+                        </div>
+
+                        <div class="phone-user">
+                            ${escapeHTML(phone.user||"")}
+                        </div>
+                    </div>
+
+                    <button
+                        class="btn btn-light btn-small"
+                        onclick="editPhone('${phone.id}')"
+                    >
+                        Editar
+                    </button>
+
+                </div>
+
+                <div class="phone-stats">
+
+                    <div class="phone-stat">
+                        <strong>${sales}</strong>
+                        <span>vendas</span>
+                    </div>
+
+                    <div class="phone-stat">
+                        <strong>${units}</strong>
+                        <span>unidades</span>
+                    </div>
+
+                    <div class="phone-stat">
+                        <strong>${formatMoney(revenue)}</strong>
+                        <span>faturamento</span>
+                    </div>
+
+                    <div class="phone-stat">
+                        <strong>${formatMoney(ads)}</strong>
+                        <span>anúncios</span>
+                    </div>
+
+                    <div class="phone-stat">
+                        <strong>${formatMoney(profit)}</strong>
+                        <span>lucro</span>
+                    </div>
+
+                    <div class="phone-stat">
+                        <strong>${formatMoney(cps)}</strong>
+                        <span>custo/venda</span>
+                    </div>
+
+                </div>
+
+                <div class="phone-profit">
+
+                    <span>Resultado do mês</span>
+
+                    <span class="${
+                        profit>=0
+                        ?"profit-positive"
+                        :"profit-negative"
+                    }">
+
+                        ${formatMoney(profit)}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+    }
+
+
+    renderRanking();
+    renderTopProducts();
+
+}
+
+
+function renderRanking(){
+
+    const phones=db.phones
+        .filter(p=>p.active)
+        .map(phone=>({
+            phone,
+            revenue:phoneRevenue(phone.id),
+            profit:phoneProfit(phone.id),
+            sales:phoneSales(phone.id).length
+        }))
+        .sort((a,b)=>b.revenue-a.revenue);
+
+    const el=document.getElementById("phoneRanking");
+
+    if(!phones.length){
+
+        el.innerHTML=
+            `<div class="empty">Nenhum dado ainda.</div>`;
+
+        return;
+
+    }
+
+    el.innerHTML=phones.map((item,index)=>`
+
+        <div class="rank">
+
+            <div class="rank-number">
+                ${index+1}
+            </div>
+
+            <div class="rank-info">
+
+                <strong>
+                    ${escapeHTML(item.phone.name)}
+                </strong>
+
+                <span>
+                    ${item.sales} vendas · lucro ${formatMoney(item.profit)}
+                </span>
+
+            </div>
+
+            <div class="rank-value">
+                ${formatMoney(item.revenue)}
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+function renderTopProducts(){
+
+    const map={};
+
+    monthSales().forEach(sale=>{
+
+        if(!map[sale.productId]){
+            map[sale.productId]={
+                qty:0,
+                revenue:0
+            };
+        }
+
+        map[sale.productId].qty+=Number(sale.qty||0);
+        map[sale.productId].revenue+=saleTotal(sale);
+
+    });
+
+    const list=Object.entries(map)
+        .map(([id,data])=>{
+
+            const product=db.products.find(p=>p.id===id);
+
+            return {
+                name:product?product.name:"Produto removido",
+                ...data
+            };
+
+        })
+        .sort((a,b)=>b.qty-a.qty)
+        .slice(0,8);
+
+    const el=document.getElementById("topProducts");
+
+    if(!list.length){
+
+        el.innerHTML=
+            `<div class="empty">Nenhuma venda neste mês.</div>`;
+
+        return;
+
+    }
+
+    el.innerHTML=list.map((item,index)=>`
+
+        <div class="rank">
+
+            <div class="rank-number">
+                ${index+1}
+            </div>
+
+            <div class="rank-info">
+
+                <strong>
+                    ${escapeHTML(item.name)}
+                </strong>
+
+                <span>
+                    ${item.qty} unidades
+                </span>
+
+            </div>
+
+            <div class="rank-value">
+                ${formatMoney(item.revenue)}
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* ============================================================
+   CELULARES
+============================================================ */
+
+function openPhoneModal(){
+
+    document.getElementById("phoneName").value="";
+    document.getElementById("phoneUser").value="";
+
+    document.getElementById("phoneModal").classList.add("show");
+
+}
+
+
+function savePhone(){
+
+    const name=document.getElementById("phoneName").value.trim();
+    const user=document.getElementById("phoneUser").value.trim();
+
+    if(!name){
+
+        toast("Digite o nome do celular.");
+
+        return;
+
+    }
+
+    db.phones.push({
+
+        id:uid(),
+        name,
+        user,
+        active:true
+
+    });
+
+    saveDB();
+
+    closeModal("phoneModal");
+
+    toast("Celular adicionado!");
+
+    renderAll();
+
+}
+
+
+function editPhone(id){
+
+    const phone=db.phones.find(p=>p.id===id);
+
+    if(!phone)return;
+
+    const newName=prompt(
+        "Nome do celular:",
+        phone.name
+    );
+
+    if(newName===null)return;
+
+    const newUser=prompt(
+        "Quem usa:",
+        phone.user||""
+    );
+
+    phone.name=newName.trim()||phone.name;
+    phone.user=newUser===null?phone.user:newUser.trim();
+
+    saveDB();
+
+    renderAll();
+
+}
+
+
+function deactivatePhone(id){
+
+    const phone=db.phones.find(p=>p.id===id);
+
+    if(!phone)return;
+
+    phone.active=false;
+
+    saveDB();
+
+    renderAll();
+
+}
+
+
+/* ============================================================
+   VENDAS
+============================================================ */
+
+function openSaleModal(){
+
+    document.getElementById("saleDate").value=today();
+
+    fillPhoneSelect("salePhone");
+    fillProductSelect();
+
+    document.getElementById("saleQty").value=1;
+    document.getElementById("salePriceType").value="normal";
+    document.getElementById("saleClient").value="";
+    document.getElementById("salePayment").value="Pix";
+    document.getElementById("saleDelivery").value="Entregue";
+
+    updateSalePrice();
+
+    document.getElementById("saleModal").classList.add("show");
+
+}
+
+
+function fillPhoneSelect(id){
+
+    const el=document.getElementById(id);
+
+    const phones=db.phones.filter(p=>p.active);
+
+    el.innerHTML=phones.map(phone=>`
+
+        <option value="${phone.id}">
+            ${escapeHTML(phone.name)}
+        </option>
+
+    `).join("");
+
+}
+
+
+function fillProductSelect(){
+
+    const el=document.getElementById("saleProduct");
+
+    const products=db.products.filter(p=>p.active);
+
+    el.innerHTML=products.map(product=>`
+
+        <option value="${product.id}">
+            ${escapeHTML(product.name)}
+        </option>
+
+    `).join("");
+
+}
+
+
+function updateSalePrice(){
+
+    const productId=
+        document.getElementById("saleProduct").value;
+
+    const type=
+        document.getElementById("salePriceType").value;
+
+    const product=
+        db.products.find(p=>p.id===productId);
+
+    if(!product)return;
+
+    const input=
+        document.getElementById("saleUnitPrice");
+
+    if(type==="normal"){
+
+        input.value=
+            Number(product.normal||0).toFixed(2);
+
+        input.readOnly=true;
+
+    }else if(type==="promo"){
+
+        input.value=
+            Number(
+                product.promo!==null
+                ?product.promo
+                :product.normal
+            ).toFixed(2);
+
+        input.readOnly=true;
+
+    }else{
+
+        input.readOnly=false;
+
+        input.focus();
+
+    }
+
+    updateSaleTotal();
+
+}
+
+
+function updateSaleTotal(){
+
+    const qty=
+        Number(document.getElementById("saleQty").value||0);
+
+    const price=
+        Number(document.getElementById("saleUnitPrice").value||0);
+
+    document.getElementById("saleTotalPreview").textContent=
+        formatMoney(qty*price);
+
+}
+
+
+function saveSale(){
+
+    const date=
+        document.getElementById("saleDate").value;
+
+    const phoneId=
+        document.getElementById("salePhone").value;
+
+    const productId=
+        document.getElementById("saleProduct").value;
+
+    const qty=
+        Number(document.getElementById("saleQty").value||0);
+
+    const unitPrice=
+        Number(document.getElementById("saleUnitPrice").value||0);
+
+    const client=
+        document.getElementById("saleClient").value.trim();
+
+    const payment=
+        document.getElementById("salePayment").value;
+
+    const delivery=
+        document.getElementById("saleDelivery").value;
+
+    if(!date || !phoneId || !productId){
+
+        toast("Preencha os campos principais.");
+
+        return;
+
+    }
+
+    if(qty<=0 || unitPrice<0){
+
+        toast("Quantidade ou preço inválido.");
+
+        return;
+
+    }
+
+    db.sales.push({
+
+        id:uid(),
+
+        date,
+
+        phoneId,
+
+        productId,
+
+        qty,
+
+        unitPrice,
+
+        payment,
+
+        delivery,
+
+        client
+
+    });
+
+    if(client){
+
+        const exists=db.clients.some(
+            c=>c.name.toLowerCase()===client.toLowerCase()
+        );
+
+        if(!exists){
+
+            db.clients.push({
+
+                id:uid(),
+                name:client,
+                whatsapp:""
+
+            });
+
+        }
+
+    }
+
+    saveDB();
+
+    closeModal("saleModal");
+
+    toast("Venda registrada!");
+
+    renderAll();
+
+}
+
+
+function deleteSale(id){
+
+    if(!confirm("Excluir esta venda?"))return;
+
+    db.sales=db.sales.filter(
+        sale=>sale.id!==id
+    );
+
+    saveDB();
+
+    renderAll();
+
+}
+
+
+/* ============================================================
+   TABELA DE VENDAS
+============================================================ */
+
+function renderSales(){
+
+    const tbody=document.getElementById("salesTable");
+
+    const sales=[...monthSales()]
+        .sort((a,b)=>b.date.localeCompare(a.date));
+
+    if(!sales.length){
+
+        tbody.innerHTML=`
+
+            <tr>
+                <td colspan="7" class="empty">
+                    Nenhuma venda neste mês.
+                </td>
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+    tbody.innerHTML=sales.map(sale=>{
+
+        const phone=
+            db.phones.find(p=>p.id===sale.phoneId);
+
+        const product=
+            db.products.find(p=>p.id===sale.productId);
+
+        return `
+
+        <tr>
+
+            <td>${formatDate(sale.date)}</td>
+
+            <td>
+                ${escapeHTML(phone?phone.name:"—")}
+            </td>
+
+            <td>
+                ${escapeHTML(product?product.name:"—")}
+            </td>
+
+            <td>
+                ${sale.qty}
+            </td>
+
+            <td>
+                <strong>${formatMoney(saleTotal(sale))}</strong>
+            </td>
+
+            <td>
+                ${escapeHTML(sale.client||"—")}
+            </td>
+
+            <td>
+                <button
+                    class="btn btn-danger btn-small"
+                    onclick="deleteSale('${sale.id}')"
+                >
+                    ×
+                </button>
+            </td>
+
+        </tr>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* ============================================================
+   PRODUTOS
+============================================================ */
+
+function openProductModal(id=null){
+
+    document.getElementById("editProductId").value=id||"";
+
+    if(id){
+
+        const product=
+            db.products.find(p=>p.id===id);
+
+        if(!product)return;
+
+        document.getElementById("productName").value=
+            product.name;
+
+        document.getElementById("productNormal").value=
+            product.normal;
+
+        document.getElementById("productPromo").value=
+            product.promo===null?"":product.promo;
+
+        document.getElementById("productNote").value=
+            product.note||"";
+
+    }else{
+
+        document.getElementById("productName").value="";
+        document.getElementById("productNormal").value="";
+        document.getElementById("productPromo").value="";
+        document.getElementById("productNote").value="";
+
+    }
+
+    document.getElementById("productModal").classList.add("show");
+
+}
+
+
+function saveProduct(){
+
+    const id=
+        document.getElementById("editProductId").value;
+
+    const name=
+        document.getElementById("productName").value.trim();
+
+    const normal=
+        Number(document.getElementById("productNormal").value||0);
+
+    const promoRaw=
+        document.getElementById("productPromo").value;
+
+    const promo=
+        promoRaw===""?null:Number(promoRaw);
+
+    const note=
+        document.getElementById("productNote").value.trim();
+
+    if(!name){
+
+        toast("Digite o nome do produto.");
+
+        return;
+
+    }
+
+    if(id){
+
+        const product=
+            db.products.find(p=>p.id===id);
+
+        if(!product)return;
+
+        const oldNormal=product.normal;
+        const oldPromo=product.promo;
+
+        if(
+            oldNormal!==normal ||
+            oldPromo!==promo
+        ){
+
+            db.priceHistory.push({
+
+                id:uid(),
+
+                productId:id,
+
+                productName:product.name,
+
+                date:today(),
+
+                oldNormal,
+
+                oldPromo,
+
+                newNormal:normal,
+
+                newPromo:promo
+
+            });
+
+        }
+
+        product.name=name;
+        product.normal=normal;
+        product.promo=promo;
+        product.note=note;
+
+    }else{
+
+        db.products.push({
+
+            id:uid(),
+            name,
+            normal,
+            promo,
+            note,
+            active:true
+
+        });
+
+    }
+
+    saveDB();
+
+    closeModal("productModal");
+
+    toast("Produto salvo!");
+
+    renderAll();
+
+}
+
+
+function toggleProduct(id){
+
+    const product=
+        db.products.find(p=>p.id===id);
+
+    if(!product)return;
+
+    product.active=!product.active;
+
+    saveDB();
+
+    renderAll();
+
+}
+
+
+function renderProducts(){
+
+    const el=document.getElementById("productsList");
+
+    const products=db.products;
+
+    if(!products.length){
+
+        el.innerHTML=
+            `<div class="card empty">Nenhum produto.</div>`;
+
+        return;
+
+    }
+
+    el.innerHTML=products.map(product=>{
+
+        const sales=monthSales().filter(
+            s=>s.productId===product.id
+        );
+
+        const qty=sales.reduce(
+            (sum,s)=>sum+Number(s.qty||0),
+            0
+        );
+
+        const revenue=sales.reduce(
+            (sum,s)=>sum+saleTotal(s),
+            0
+        );
+
+        const allSales=db.sales.filter(
+            s=>s.productId===product.id
+        );
+
+        const last=
+            allSales.sort(
+                (a,b)=>b.date.localeCompare(a.date)
+            )[0];
+
+        return `
+
+        <div class="product-card">
+
+            <div class="product-head">
+
+                <div>
+
+                    <div class="product-name">
+                        ${escapeHTML(product.name)}
+                    </div>
+
+                    <div class="product-prices">
+
+                        <span class="price-normal">
+                            Normal: ${formatMoney(product.normal)}
+                        </span>
+
+                        ${
+                            product.promo!==null
+                            ?
+                            `<span class="price-promo">
+                                Promo: ${formatMoney(product.promo)}
+                            </span>`
+                            :""
+                        }
+
+                    </div>
+
+                </div>
+
+                <span class="product-status">
+                    ${product.active?"ATIVO":"INATIVO"}
+                </span>
+
+            </div>
+
+            ${
+                product.note
+                ?
+                `<div style="margin-top:8px;font-size:10px;color:#8B766B;">
+                    ${escapeHTML(product.note)}
+                </div>`
+                :""
+            }
+
+            <div class="product-info">
+
+                <span>
+                    Este mês: <strong>${qty}</strong> unidades
+                </span>
+
+                <span>
+                    ${formatMoney(revenue)}
+                </span>
+
+            </div>
+
+            <div class="product-info">
+
+                <span>
+                    ${
+                        last
+                        ?"Última venda: "+formatDate(last.date)
+                        :"Sem nenhuma venda"
+                    }
+                </span>
+
+                <span class="${
+                    qty===0
+                    ?"badge badge-red"
+                    :"badge badge-green"
+                }">
+
+                    ${
+                        qty===0
+                        ?"Sem venda no mês"
+                        :"Vendendo"
+                    }
+
+                </span>
+
+            </div>
+
+            <div class="actions" style="margin-top:12px;">
+
+                <button
+                    class="btn btn-light btn-small"
+                    onclick="openProductModal('${product.id}')"
+                >
+                    ✏️ Editar
+                </button>
+
+                <button
+                    class="btn ${
+                        product.active
+                        ?"btn-danger"
+                        :"btn-gold"
+                    } btn-small"
+                    onclick="toggleProduct('${product.id}')"
+                >
+                    ${
+                        product.active
+                        ?"Desativar"
+                        :"Ativar"
+                    }
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* ============================================================
+   ANÚNCIOS
+============================================================ */
+
+function openAdModal(){
+
+    document.getElementById("adDate").value=today();
+
+    fillPhoneSelect("adPhone");
+
+    document.getElementById("adAmount").value="";
+    document.getElementById("adNote").value="";
+
+    document.getElementById("adModal").classList.add("show");
+
+}
+
+
+function saveAd(){
+
+    const date=
+        document.getElementById("adDate").value;
+
+    const phoneId=
+        document.getElementById("adPhone").value;
+
+    const amount=
+        Number(document.getElementById("adAmount").value||0);
+
+    const note=
+        document.getElementById("adNote").value.trim();
+
+    if(!date || !phoneId || amount<=0){
+
+        toast("Preencha data, celular e valor.");
+
+        return;
+
+    }
+
+    db.ads.push({
+
+        id:uid(),
+        date,
+        phoneId,
+        amount,
+        note
+
+    });
+
+    saveDB();
+
+    closeModal("adModal");
+
+    toast("Gasto registrado!");
+
+    renderAll();
+
+}
+
+
+function deleteAd(id){
+
+    if(!confirm("Excluir este gasto?"))return;
+
+    db.ads=db.ads.filter(
+        ad=>ad.id!==id
+    );
+
+    saveDB();
+
+    renderAll();
+
+}
+
+
+function renderAds(){
+
+    const ads=monthAds();
+
+    document.getElementById("adsPageTotal").textContent=
+        formatMoney(totalAds());
+
+    const salesCount=monthSales().length;
+
+    document.getElementById("costPerSale").textContent=
+        formatMoney(
+            salesCount
+            ?totalAds()/salesCount
+            :0
+        );
+
+    const tbody=document.getElementById("adsTable");
+
+    if(!ads.length){
+
+        tbody.innerHTML=`
+
+        <tr>
+            <td colspan="5" class="empty">
+                Nenhum gasto neste mês.
+            </td>
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+    tbody.innerHTML=[...ads]
+        .sort((a,b)=>b.date.localeCompare(a.date))
+        .map(ad=>{
+
+            const phone=
+                db.phones.find(p=>p.id===ad.phoneId);
+
+            return `
+
+            <tr>
+
+                <td>${formatDate(ad.date)}</td>
+
+                <td>
+                    ${escapeHTML(phone?phone.name:"—")}
+                </td>
+
+                <td>
+                    <strong>${formatMoney(ad.amount)}</strong>
+                </td>
+
+                <td>
+                    ${escapeHTML(ad.note||"—")}
+                </td>
+
+                <td>
+                    <button
+                        class="btn btn-danger btn-small"
+                        onclick="deleteAd('${ad.id}')"
+                    >
+                        ×
+                    </button>
+                </td>
+
+            </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* ============================================================
+   CLIENTES
+============================================================ */
+
+function openClientModal(){
+
+    document.getElementById("clientName").value="";
+    document.getElementById("clientWhatsapp").value="";
+
+    renderClientModalList();
+
+    document.getElementById("clientModal").classList.add("show");
+
+}
+
+
+function saveClient(){
+
+    const name=
+        document.getElementById("clientName").value.trim();
+
+    const whatsapp=
+        document.getElementById("clientWhatsapp").value.trim();
+
+    if(!name){
+
+        toast("Digite o nome.");
+
+        return;
+
+    }
+
+    db.clients.push({
+
+        id:uid(),
+        name,
+        whatsapp
+
+    });
+
+    saveDB();
+
+    document.getElementById("clientName").value="";
+    document.getElementById("clientWhatsapp").value="";
+
+    renderClientModalList();
+    renderClients();
+
+    toast("Cliente adicionado!");
+
+}
+
+
+function deleteClient(id){
+
+    db.clients=db.clients.filter(
+        c=>c.id!==id
+    );
+
+    saveDB();
+
+    renderClientModalList();
+    renderClients();
+
+}
+
+
+function renderClientModalList(){
+
+    const el=
+        document.getElementById("clientModalList");
+
+    if(!db.clients.length){
+
+        el.innerHTML=
+            `<div class="empty">Nenhum cliente.</div>`;
+
+        return;
+
+    }
+
+    el.innerHTML=db.clients.map(client=>`
+
+        <div style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:10px 0;
+            border-bottom:1px solid #EEE4DC;
+        ">
+
+            <div>
+
+                <strong style="font-size:12px;">
+                    ${escapeHTML(client.name)}
+                </strong>
+
+                <div style="font-size:10px;color:#8B766B;">
+                    ${escapeHTML(client.whatsapp||"Sem WhatsApp")}
+                </div>
+
+            </div>
+
+            <button
+                class="btn btn-danger btn-small"
+                onclick="deleteClient('${client.id}')"
+            >
+                ×
+            </button>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+function renderClients(){
+
+    const el=document.getElementById("clientsList");
+
+    if(!db.clients.length){
+
+        el.innerHTML=
+            `<div class="empty">Nenhum cliente cadastrado.</div>`;
+
+        return;
+
+    }
+
+    el.innerHTML=db.clients.map(client=>{
+
+        const sales=db.sales.filter(
+            s=>
+                (s.client||"").toLowerCase()
+                ===client.name.toLowerCase()
+        );
+
+        const total=sales.reduce(
+            (sum,s)=>sum+saleTotal(s),
+            0
+        );
+
+        return `
+
+        <div style="
+            padding:12px 0;
+            border-bottom:1px solid #EEE4DC;
+        ">
+
+            <strong style="font-size:13px;">
+                ${escapeHTML(client.name)}
+            </strong>
+
+            <div style="font-size:10px;color:#8B766B;margin-top:3px;">
+                ${escapeHTML(client.whatsapp||"Sem WhatsApp")}
+            </div>
+
+            <div style="font-size:10px;color:#8B766B;margin-top:6px;">
+                ${sales.length} compras · ${formatMoney(total)}
+            </div>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* ============================================================
+   RESUMO PRODUTOS
+============================================================ */
+
+function renderProductSummary(){
+
+    const el=document.getElementById("productSummary");
+
+    if(!db.products.length){
+
+        el.innerHTML=
+            `<div class="empty">Nenhum produto.</div>`;
+
+        return;
+
+    }
+
+    el.innerHTML=db.products.map(product=>{
+
+        const sales=monthSales().filter(
+            s=>s.productId===product.id
+        );
+
+        const qty=sales.reduce(
+            (sum,s)=>sum+Number(s.qty||0),
+            0
+        );
+
+        const revenue=sales.reduce(
+            (sum,s)=>sum+saleTotal(s),
+            0
+        );
+
+        return `
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:10px;
+            padding:11px 0;
+            border-bottom:1px solid #EEE4DC;
+        ">
+
+            <div>
+
+                <strong style="font-size:12px;">
+                    ${escapeHTML(product.name)}
+                </strong>
+
+                <div style="font-size:9px;color:#8B766B;">
+                    ${qty} unidades vendidas
+                </div>
+
+            </div>
+
+            <div style="
+                text-align:right;
+                font-size:12px;
+                font-weight:800;
+                color:#66301E;
+            ">
+                ${formatMoney(revenue)}
+            </div>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* ============================================================
+   HISTÓRICO DE PREÇOS
+============================================================ */
+
+function renderPriceHistory(){
+
+    const el=document.getElementById("priceHistory");
+
+    const history=[...db.priceHistory]
+        .sort((a,b)=>b.date.localeCompare(a.date));
+
+    if(!history.length){
+
+        el.innerHTML=`
+
+        <div class="empty">
+            Nenhuma alteração de preço registrada ainda.
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    el.innerHTML=history.map(item=>`
+
+        <div style="
+            padding:12px 0;
+            border-bottom:1px solid #EEE4DC;
+        ">
+
+            <strong style="font-size:12px;">
+                ${escapeHTML(item.productName)}
+            </strong>
+
+            <div style="
+                margin-top:5px;
+                font-size:10px;
+                color:#8B766B;
+            ">
+
+                ${formatDate(item.date)}
+
+            </div>
+
+            <div style="
+                margin-top:7px;
+                font-size:11px;
+            ">
+
+                ${formatMoney(item.oldNormal)}
+                →
+
+                <strong>
+                    ${formatMoney(item.newNormal)}
+                </strong>
+
+                ${
+                    item.oldPromo!==null ||
+                    item.newPromo!==null
+                    ?
+                    `
+                    <br>
+
+                    Promo:
+                    ${
+                        item.oldPromo===null
+                        ?"—"
+                        :formatMoney(item.oldPromo)
+                    }
+
+                    →
+
+                    <strong>
+                        ${
+                            item.newPromo===null
+                            ?"—"
+                            :formatMoney(item.newPromo)
+                        }
+                    </strong>
+                    `
+                    :""
+                }
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* ============================================================
+   EXPORTAÇÃO
+============================================================ */
+
+function exportData(){
+
+    const blob=new Blob(
+        [
+            JSON.stringify(db,null,2)
+        ],
+        {
+            type:"application/json"
+        }
+    );
+
+    const url=URL.createObjectURL(blob);
+
+    const a=document.createElement("a");
+
+    a.href=url;
+
+    a.download=
+        "backup-criativa-organize-"+today()+".json";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+    toast("Backup exportado!");
+
+}
+
+
+function clearData(){
+
+    const confirmation=prompt(
+        "Digite APAGAR para apagar todos os dados:"
+    );
+
+    if(confirmation!=="APAGAR"){
+
+        toast("Nada foi apagado.");
+
+        return;
+
+    }
+
+    localStorage.removeItem(STORAGE_KEY);
+
+    location.reload();
+
+}
+
+
+/* ============================================================
+   MODAL
+============================================================ */
+
+function closeModal(id){
+
+    document.getElementById(id)
+        .classList.remove("show");
+
+}
+
+
+document.querySelectorAll(".modal").forEach(modal=>{
+
+    modal.addEventListener("click",function(e){
+
+        if(e.target===modal){
+
+            modal.classList.remove("show");
+
+        }
+
+    });
+
 });
 
-}
 
-function preencherValor(){
+/* ============================================================
+   TOAST
+============================================================ */
 
-document.getElementById("valor").value =
-document.getElementById("servico").value;
+let toastTimer;
 
-}
+function toast(message){
 
-function salvar(){
+    const el=document.getElementById("toast");
 
-localStorage.setItem("pedidosCriativa", JSON.stringify(pedidos));
+    el.textContent=message;
 
-}
+    el.classList.add("show");
 
-function salvarGasto(){
+    clearTimeout(toastTimer);
 
-gasto =
-Number(document.getElementById("gastoAnuncio").value) || 0;
+    toastTimer=setTimeout(()=>{
 
-localStorage.setItem("gastoAnuncioCriativa", gasto);
+        el.classList.remove("show");
 
-atualizarResumo();
-
-}
-
-function adicionarPedido(){
-
-let cliente =
-document.getElementById("cliente").value;
-
-let servico =
-document.getElementById("servico")
-.options[
-document.getElementById("servico").selectedIndex
-].text;
-
-let valor =
-Number(document.getElementById("valor").value);
-
-let data =
-document.getElementById("data").value;
-
-let hora =
-document.getElementById("hora").value;
-
-let pago =
-document.getElementById("pago").value;
-
-let entregue =
-document.getElementById("entregue").value;
-
-let obs =
-document.getElementById("obs").value;
-
-if(!cliente || !valor || !data){
-
-alert("Preencha cliente, valor e data.");
-
-return;
+    },2200);
 
 }
 
-pedidos.push({
-cliente,
-servico,
-valor,
-data,
-hora,
-pago,
-entregue,
-obs
-});
 
-salvar();
+/* ============================================================
+   SEGURANÇA CONTRA HTML
+============================================================ */
 
-document.getElementById("cliente").value="";
-document.getElementById("valor").value="";
-document.getElementById("data").value="";
-document.getElementById("hora").value="";
-document.getElementById("obs").value="";
+function escapeHTML(value){
 
-atualizar();
+    return String(value??"")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
 }
 
-function excluir(index){
 
-if(confirm("Excluir pedido?")){
+/* ============================================================
+   RENDER GERAL
+============================================================ */
 
-pedidos.splice(index,1);
+function renderAll(){
 
-salvar();
+    document.getElementById("monthFilter").value=
+        currentMonth;
 
-atualizar();
-
-}
-
-}
-
-function mudarPago(index){
-
-pedidos[index].pago =
-pedidos[index].pago === "sim" ? "nao" : "sim";
-
-salvar();
-
-atualizar();
+    renderDashboard();
+    renderSales();
+    renderProducts();
+    renderAds();
+    renderProductSummary();
+    renderPriceHistory();
+    renderClients();
 
 }
 
-function mudarEntrega(index){
 
-pedidos[index].entregue =
-pedidos[index].entregue === "sim" ? "nao" : "sim";
+/* ============================================================
+   INICIALIZAÇÃO
+============================================================ */
 
-salvar();
+document.getElementById("monthFilter").value=
+    currentMonth;
 
-atualizar();
+renderAll();
 
-}
-
-function atualizarResumo(){
-
-let entrou = pedidos
-.filter(p=>p.pago==="sim")
-.reduce((s,p)=>s+p.valor,0);
-
-let lucro = entrou - gasto;
-
-document.getElementById("totalEntrou").innerText =
-dinheiro(entrou);
-
-document.getElementById("totalAnuncio").innerText =
-dinheiro(gasto);
-
-document.getElementById("lucro").innerText =
-dinheiro(lucro);
-
-document.getElementById("qtdPedidos").innerText =
-pedidos.length;
-
-}
-
-function atualizarTabela(){
-
-let tabela =
-document.getElementById("tabelaPedidos");
-
-tabela.innerHTML="";
-
-pedidos.slice().reverse().forEach((p,index)=>{
-
-tabela.innerHTML += `
-<tr>
-
-<td>${p.cliente}</td>
-
-<td>${p.servico}</td>
-
-<td>${dinheiro(p.valor)}</td>
-
-<td>${p.data}</td>
-
-<td>${p.hora || "-"}</td>
-
-<td class="${p.pago==="sim" ? "statusPago" : "statusNao"}">
-${p.pago==="sim" ? "Pago" : "Não"}
-</td>
-
-<td class="${p.entregue==="sim" ? "statusEntrega" : "statusNao"}">
-${p.entregue==="sim" ? "Entregue" : "Pendente"}
-</td>
-
-<td>${p.obs || "-"}</td>
-
-<td>
-
-<button class="btnMini btnBrown"
-onclick="mudarPago(${pedidos.length-1-index})">
-Pago
-</button>
-
-<button class="btnMini btnBrown"
-onclick="mudarEntrega(${pedidos.length-1-index})">
-Entrega
-</button>
-
-<button class="btnMini btnDelete"
-onclick="excluir(${pedidos.length-1-index})">
-X
-</button>
-
-</td>
-
-</tr>
-`;
-
-});
-
-}
-
-function atualizar(){
-
-atualizarResumo();
-
-atualizarTabela();
-
-}
-
-preencherValor();
 </script>
 
 </body>
